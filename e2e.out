@@ -1,10 +1,10 @@
-BLOCKED  taskkill /IM chrome.exe /F             {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: A name-based ki
+BLOCKED  taskkill /IM chrome.exe /F             because: A name-based kill can stop someone else's session. Instead: use taskkill /PID <n> /F for a
 allowed  taskkill /PID 4242 /F                  
-BLOCKED  git add -A                             {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: Bulk staging in
+BLOCKED  git add -A                             because: Bulk staging includes parallel work. Instead: read git status, then git add <paths you cha
 allowed  git add src/app.js                     
-BLOCKED  git reset --hard                       {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: Rollback can er
+BLOCKED  git reset --hard                       because: Rollback can erase another writer's changes. Instead: use git stash --include-untracked to
 allowed  git stash --include-untracked          
-BLOCKED  rm -rf ~                               {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: A broad force-d
+BLOCKED  rm -rf ~                               because: A broad force-delete can destroy shared files. Instead: list the specific path you created
 allowed  rm -rf ./build                         
-BLOCKED  powercfg /h on                         {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: Enabling sleep 
-BLOCKED  git push origin main                   {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: This action lea
+BLOCKED  powercfg /h on                         because: Enabling sleep can kill long-running jobs. Instead: leave power settings alone and ask the
+BLOCKED  git push origin main                   because: This action leaves the laptop or changes a remote service. Instead: show the finished thin

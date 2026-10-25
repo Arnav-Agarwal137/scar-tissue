@@ -93,3 +93,7 @@ node demo.mjs kill
 node demo.mjs pipeline
 node demo.mjs outbound
 ```
+
+## Upstream fix
+
+The subst-drive publish bug above is fixed on [`Arnav-Agarwal137/failproofai@fix/publish-subst-drive`](https://github.com/Arnav-Agarwal137/failproofai/tree/fix/publish-subst-drive) (commit `fa9f9e4`: `realOrSelf()` tries `realpathSync.native` first, plus a CHANGELOG entry), ready to open as a pull request.

@@ -1,6 +1,6 @@
 # scar-tissue
 
-**Every policy here is a scar.** Ten real agent incidents turned into failproofai guards that stop the tool call and tell the agent what to do instead.
+**Every policy here is a scar.** Fourteen guards turn agent incidents into tool-call checks that tell the agent what to do instead.
 
 Built for the Failproof AI × Quad AI hackathon. The incidents came from two months of a coding agent operating one person's laptop. The recurring lesson: a bare “blocked” can make an agent give up or claim success. A useful guard supplies a recovery path.
 
@@ -27,16 +27,29 @@ failproofai policies add <owner>/scar-tissue
 | `never-let-it-sleep` | Sleep killed an overnight job. | Re-enabling hibernation, nonzero standby timeouts, lid sleep | Leave power settings alone; ask the owner. |
 | `no-blind-force` | A broad force-delete threatened unrelated files. | Recursive forced deletion of roots, homes, parent directory, bare wildcard | List and verify the specific created path, then delete it. |
 
+### Browser agents
+
+The same scars, for agents that drive a real browser.
+
+| Policy | The incident | What it blocks | What it tells the agent to do instead |
+| --- | --- | --- | --- |
+| `browser-click-to-send-needs-approval` | A browser action sent an unreviewed draft. | Send, submit, publish, delete or pay clicks, keys and form actions without approval | Show the finished draft or form, ask for approval, then act. |
+| `browser-never-types-secrets` | A credential was typed into a page. | API keys, Luhn-valid card numbers and password/OTP fields | Ask the person to type it or use their password manager. |
+| `browser-no-personal-data-in-urls` | Personal identifiers leaked through URL history and logs. | Email addresses, phone and ID numbers in query strings | Open the page and enter the identifier in its form. |
+| `browser-no-native-dialogs` | A native dialog froze the browser driver. | File-picker/print/save-as clicks and JavaScript alert/confirm/prompt | Use upload, PDF/download tools, or console.log. |
+
 ## Why this is failproof
 
-- **130 passing tests, zero failures or skips** in `test.log`, including an integration test against installed failproofai 1.0.12. Run `node --test test/` with Node 22.18+.
+- **174 passing tests, zero failures or skips** in `test.log`, including an integration test against installed failproofai 1.0.12. Run `node --test test/` with Node 22.18+.
 - Every policy has at least two dangerous inputs and two clean controls, including Claude Code and Codex shapes. Tests assert the exact `deny`, `instruct`, or `allow` decision and actionable “Instead:” guidance.
 - Clean controls check PID kills, path-specific staging, stashing, ordinary writes, dry runs, localhost requests, and quoted command examples. These guard against over-blocking.
 - Every registered function has a `try/catch`. Because the host treats exceptions as allow, tests force an exception and exercise missing/malformed contexts for every policy. A missing or unreadable transcript supplies no approval.
-- A coverage contract checks all ten policy names and both harnesses. A mutation test replaces a detector with `allow` and confirms the same decision assertion fails.
+- A coverage contract checks all fourteen policy names and both tool families: Claude Code/Codex for coding guards, Claude in Chrome/Playwright MCP for browser guards. A mutation test replaces a detector with `allow` and confirms the same decision assertion fails.
 - Works with Claude `Bash`/`Write`/`Edit`, canonical Codex hooks, and raw `shell`, `shell_command`, `exec_command`, `PowerShell`, and `apply_patch` shapes. Shell commands may be strings or argv arrays; Windows paths are normalized.
 
-`instruct` allows execution with a corrective note; eight other guards deny. No command in the tests or demo is executed: proposed tool calls are evaluated in memory. Tests capture registrations without requiring package installation; the real API integration also runs when failproofai is available locally or in the standard Windows global npm location.
+Browser coverage includes Claude in Chrome `computer` (left_click/type/key), `form_input`, `navigate`, and `javascript_tool`, plus Playwright MCP `browser_click`, `browser_type`, `browser_navigate`, and `browser_evaluate`. Clean controls include Compose clicks, normal sentences, Google searches, and a non-Luhn 16-digit order ID.
+
+`instruct` allows execution with a corrective note; twelve other guards deny. No command in the tests or demo is executed: proposed tool calls are evaluated in memory. Tests capture registrations without requiring package installation; the real API integration also runs when failproofai is available locally or in the standard Windows global npm location.
 
 These are focused incident guards, not a complete shell interpreter or sandbox. The approval gate reads the latest human prompt in Claude JSONL or Codex rollout formats and checks explicit approval words; it does not prove that approval covers the exact target. The semantic eval below checks that distinction. App-closing approval also does not override the independent PID-only rule.
 

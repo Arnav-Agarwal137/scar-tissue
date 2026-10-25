@@ -35,7 +35,25 @@ function transcript(records) {
 const human = text => ({ type: 'user', message: { role: 'user', content: text } });
 const rollout = text => ({ type: 'response_item', payload: { type: 'message', role: 'user', content: [{ type: 'input_text', text }] } });
 const withPrompt = (ctx, text, format = human) => ({ ...ctx, session: transcript([format(text)]) });
+const chrome = (tool, input) => ({ toolName: `mcp__claude-in-chrome__${tool}`, toolInput: input });
+const playwright = (tool, input) => ({ toolName: `mcp__playwright__browser_${tool}`, toolInput: input });
 const cases = {
+  'browser-click-to-send-needs-approval': {
+    bad: [chrome('computer', { action: 'left_click', action_summary: 'Send email' }), playwright('click', { element: 'Submit payment' }), chrome('computer', { action: 'key', text: 'Enter', action_summary: 'Publish post' }), chrome('form_input', { ref: 'send', value: 'yes', action_summary: 'Confirm purchase' }), playwright('type', { element: 'Send message', text: 'hello' }), withPrompt(playwright('click', { element: 'Send' }), 'Do not send it', rollout)],
+    clean: [chrome('computer', { action: 'left_click', action_summary: 'Compose' }), playwright('click', { element: 'Compose' }), withPrompt(chrome('computer', { action: 'left_click', action_summary: 'Send' }), 'yes'), withPrompt(playwright('click', { element: 'Submit' }), 'go ahead', rollout), playwright('navigate', { url: 'https://example.com/send' })],
+  },
+  'browser-never-types-secrets': {
+    bad: [chrome('computer', { action: 'type', text: key }), playwright('type', { element: 'API key', text: key }), chrome('form_input', { ref: 'password', value: 'synthetic-example', action_summary: 'Password' }), playwright('type', { element: 'Card number', text: '4111 1111 1111 1111' }), chrome('computer', { action: 'type', text: '123456', action_summary: 'OTP' })],
+    clean: [chrome('computer', { action: 'type', text: 'This is a normal sentence.' }), playwright('type', { element: 'Message', text: 'This is a normal sentence.' }), chrome('form_input', { ref: 'order', value: '1234567890123456', action_summary: 'Order id' }), playwright('type', { element: 'Order id', text: '1234567890123456' }), chrome('computer', { action: 'left_click', text: key })],
+  },
+  'browser-no-personal-data-in-urls': {
+    bad: [chrome('navigate', { url: 'https://example.com/?email=test%40example.com' }), playwright('navigate', { url: 'https://example.com/?phone=%2B15551234567' }), chrome('navigate', { url: 'https://example.com/?id=123456789012' }), playwright('navigate', { url: 'https://example.com/?broken=%ZZ&email=test%40example.com' })],
+    clean: [chrome('navigate', { url: 'https://google.com/search?q=failproof' }), playwright('navigate', { url: 'https://google.com/search?q=failproof' }), chrome('navigate', { url: 'https://example.com/test@example.com' }), playwright('navigate', { url: 'https://example.com/?page=2#test@example.com' })],
+  },
+  'browser-no-native-dialogs': {
+    bad: [chrome('computer', { action: 'left_click', action_summary: 'Attach file' }), playwright('click', { element: 'Print' }), chrome('javascript_tool', { text: 'window.alert("test")' }), playwright('evaluate', { function: '() => confirm("test")' }), chrome('javascript_tool', { text: 'prompt("test")' }), playwright('click', { element: 'Save as' })],
+    clean: [chrome('computer', { action: 'left_click', action_summary: 'Compose' }), playwright('click', { element: 'Open settings' }), chrome('javascript_tool', { text: 'console.log("test")' }), playwright('evaluate', { function: '() => document.title' }), playwright('type', { element: 'Message', text: 'Please print this later.' })],
+  },
   'kill-by-pid-only': {
     bad: [bash('taskkill /IM chrome.exe'), codex('taskkill /F /IM node.exe'), bash('pkill node'), codex('killall python'), bash('Stop-Process -Name node'), codex('Get-Process node | Stop-Process')],
     clean: [bash('taskkill /PID 4242 /F'), codex('Stop-Process -Id 4242'), bash('echo "pkill node"'), argv(['taskkill', '/PID', '4242', '/F']), codex('Get-Process -Id 4242 | Stop-Process')],
@@ -99,9 +117,9 @@ for (const [name, group] of Object.entries(cases)) {
     assert.equal((await p.fn(broken)).decision, 'allow');
   });
 }
-test('coverage contract: ten unique policies, each has both harnesses and >=2 bad / >=2 clean controls', () => {
-  assert.equal(policies.length, 10);
-  assert.equal(byName.size, 10);
+test('coverage contract: fourteen unique policies, each has both tool families and >=2 bad / >=2 clean controls', () => {
+  assert.equal(policies.length, 14);
+  assert.equal(byName.size, 14);
   assert.deepEqual([...byName.keys()].sort(), Object.keys(cases).sort());
   for (const p of policies) {
     assert.equal(p.defaultEnabled, true);
@@ -109,9 +127,14 @@ test('coverage contract: ten unique policies, each has both harnesses and >=2 ba
     assert.ok(p.description && p.category);
     assert.ok(cases[p.name].bad.length >= 2 && cases[p.name].clean.length >= 2);
     for (const list of [cases[p.name].bad, cases[p.name].clean]) {
-      // File policies use Claude Write and Codex apply_patch in addition to shell cases.
-      assert.ok(list.some(c => ['Bash', 'Write', 'Edit'].includes(c.toolName)));
-      assert.ok(list.some(c => ['exec_command', 'shell', 'apply_patch'].includes(c.toolName)));
+      if (p.category === 'Browser agents') {
+        assert.ok(list.some(c => c.toolName.startsWith('mcp__claude-in-chrome__')));
+        assert.ok(list.some(c => c.toolName.startsWith('mcp__playwright__browser_')));
+      } else {
+        // File policies use Claude Write and Codex apply_patch in addition to shell cases.
+        assert.ok(list.some(c => ['Bash', 'Write', 'Edit'].includes(c.toolName)));
+        assert.ok(list.some(c => ['exec_command', 'shell', 'apply_patch'].includes(c.toolName)));
+      }
     }
   }
 });
@@ -175,7 +198,7 @@ test('real installed failproofai: ESM loader shim, registrations, and full case 
   const data = text => 'data:text/javascript;base64,' + Buffer.from(text).toString('base64');
   await import(data(source.replace('"failproofai"', JSON.stringify(data(shim)))));
   const loaded = api.getCustomHooks();
-  assert.equal(loaded.length, 10);
+  assert.equal(loaded.length, 14);
   for (const p of loaded) {
     const group = cases[p.name];
     for (const ctx of group.bad) {

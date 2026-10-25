@@ -185,6 +185,58 @@ register("never-let-it-sleep", "System", "An overnight job died when laptop slee
     (w.some(x => /^lidaction$/i.test(x)) && /^(?:1|0x0*1)$/i.test(w.at(-1)))
   ))) return deny("Enabling sleep can kill long-running jobs. Instead: leave power settings alone and ask the owner.");
 });
+// Browser tools expose intended actions as labels instead of shell commands.
+const browserTool = /^mcp__.*(?:chrome|browser|playwright|puppeteer)/i;
+const irreversible = /\b(send|submit|publish|post|delete|remove|pay|purchase|buy|place order|checkout|confirm|transfer|merge)\b/i;
+function browserFields(ctx) {
+  if (!browserTool.test(str(ctx?.toolName))) return null;
+  const i = ctx?.toolInput ?? {};
+  return {
+    action: str(i.action) + " " + str(ctx.toolName),
+    text: str(i.text ?? i.value),
+    url: str(i.url),
+    intent: [i.action_summary, i.element, i.description, i.query].map(str).join(" "),
+    js: str(i.text ?? i.function ?? i.script ?? i.code),
+  };
+}
+function luhn(s) {
+  let sum = 0, alternate = false;
+  for (let n = s.length - 1; n >= 0; n--) {
+    let digit = Number(s[n]);
+    if (alternate) { digit *= 2; if (digit > 9) digit -= 9; }
+    sum += digit; alternate = !alternate;
+  }
+  return sum % 10 === 0;
+}
+register("browser-click-to-send-needs-approval", "Browser agents", "A browser action sent an unreviewed draft or committed an irreversible change.", ctx => {
+  const f = browserFields(ctx);
+  if (f && /click|key|type|form|press|select|submit/i.test(f.action) && irreversible.test(f.intent) && !approved(ctx))
+    return deny("This browser action cannot be taken back (" + f.intent.slice(0, 80) + "). Instead: show a screenshot of the finished form or draft, ask for approval, and act only after the person approves.");
+});
+register("browser-never-types-secrets", "Browser agents", "A credential or card number was typed into a web page.", ctx => {
+  const f = browserFields(ctx);
+  if (!f || !/type|form_input/i.test(f.action) || !f.text) return;
+  const digits = f.text.replace(/[\s-]/g, "");
+  if (secret.test(f.text) || (/^\d{13,19}$/.test(digits) && luhn(digits)) || /\b(?:password|passcode|pin|cvv|otp)\b/i.test(f.intent))
+    return deny("That looks like a secret (key, card number or password). Instead: ask the person to type it themselves or use their password manager.");
+});
+register("browser-no-personal-data-in-urls", "Browser agents", "Personal identifiers in a URL leaked into history, logs and referrers.", ctx => {
+  const f = browserFields(ctx);
+  if (!f || !f.url.includes("?")) return;
+  const query = f.url.slice(f.url.indexOf("?") + 1).split("#")[0];
+  // URLSearchParams decodes percent escapes and form-encoded spaces defensively.
+  const values = [...new URLSearchParams(query)].flat().join(" ");
+  if (/[\w.+-]+@[\w-]+\.[\w.]+/.test(values) || /(?:\+?\d[\d -]{9,}\d)/.test(values))
+    return deny("This URL puts personal data in history, logs and referrers. Instead: open the page and enter the identifier in its form field.");
+});
+register("browser-no-native-dialogs", "Browser agents", "A native dialog froze the browser driver.", ctx => {
+  const f = browserFields(ctx);
+  if (!f) return;
+  if (/javascript|evaluate/i.test(str(ctx.toolName)) && /\b(?:alert|confirm|prompt)\s*\(/.test(f.js))
+    return deny("alert/confirm/prompt can freeze the page and browser driver. Instead: use console.log and read the console.");
+  if (/click/i.test(f.action) && /(?:paperclip|attach file|choose file|browse files|file picker|\bprint\b|save as)/i.test(f.intent))
+    return deny("That opens a native OS dialog the browser tool cannot drive. Instead: use the file-upload tool on the hidden file input, or a browser PDF/download tool for print or save.");
+});
 function dangerousTarget(p) {
   p = norm(p).replace(/\/+$/, "") || "/";
   return /^(?:\/|~|\$HOME|\$env:USERPROFILE|\$env:HOME|%USERPROFILE%|[a-z]:|\.\.|\*)$/i.test(p) ||

@@ -7,8 +7,11 @@ Built for the Failproof AI × Quad AI hackathon. The incidents came from two mon
 ## Install
 
 ```sh
-failproofai policies -i -c ./scar-tissue.mjs --cli codex   # from a clone
+failproofai policies add Arnav-Agarwal137/scar-tissue      # published release v0.1.0, 14 policies
+failproofai policies -i -c ./scar-tissue.mjs --cli codex --scope project   # or from a clone, one project only
 ```
+
+Found while building: on Windows, when the repo lives on a `subst` drive, `failproofai publish` reports committed policy files as "not in it" (the drive letter and git's real path differ). Workaround: pass `--version`.
 
 ## Proven through the real engine
 

@@ -6,13 +6,28 @@ Built for the Failproof AI × Quad AI hackathon. The incidents came from two mon
 
 ## Install
 
-Once an owner publishes the pack:
-
 ```sh
-failproofai policies add <owner>/scar-tissue
+failproofai policies -i -c ./scar-tissue.mjs --cli codex   # from a clone
 ```
 
-`<owner>` is a placeholder. This submission is local; it has not been published or installed as a hook. The single entry, `scar-tissue.mjs`, has no relative imports, so its policy logic stays inside the digest-pinned file.
+## Proven through the real engine
+
+`bash e2e.sh` sends real Codex `PreToolUse` hook events through the installed `failproofai` binary, the same command `~/.codex/hooks.json` runs. Output on the build laptop (failproofai 1.0.12, Windows 11):
+
+```
+BLOCKED  taskkill /IM chrome.exe /F             
+allowed  taskkill /PID 4242 /F                  
+BLOCKED  git add -A                             
+allowed  git add src/app.js                     
+BLOCKED  git reset --hard                       
+allowed  git stash --include-untracked          
+BLOCKED  rm -rf ~                               
+allowed  rm -rf ./build                         
+BLOCKED  powercfg /h on                         
+BLOCKED  git push origin main
+```
+
+Every dangerous call is denied with an "Instead:" recovery path; every clean control passes. The single entry, `scar-tissue.mjs`, has no relative imports, so its policy logic stays inside the digest-pinned file.
 
 | Policy | The incident | What it blocks | What it tells the agent to do instead |
 | --- | --- | --- | --- |

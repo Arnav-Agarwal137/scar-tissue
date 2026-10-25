@@ -1,0 +1,10 @@
+BLOCKED  taskkill /IM chrome.exe /F             {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: A name-based ki
+allowed  taskkill /PID 4242 /F                  
+BLOCKED  git add -A                             {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: Bulk staging in
+allowed  git add src/app.js                     
+BLOCKED  git reset --hard                       {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: Rollback can er
+allowed  git stash --include-untracked          
+BLOCKED  rm -rf ~                               {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: A broad force-d
+allowed  rm -rf ./build                         
+BLOCKED  powercfg /h on                         {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: Enabling sleep 
+BLOCKED  git push origin main                   {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Blocked Bash by failproofai because: This action lea

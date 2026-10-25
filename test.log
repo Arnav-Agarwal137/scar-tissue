@@ -1,0 +1,790 @@
+TAP version 13
+# Subtest: kill-by-pid-only: bad 1
+ok 1 - kill-by-pid-only: bad 1
+  ---
+  duration_ms: 1.8448
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: bad 2
+ok 2 - kill-by-pid-only: bad 2
+  ---
+  duration_ms: 0.1811
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: bad 3
+ok 3 - kill-by-pid-only: bad 3
+  ---
+  duration_ms: 0.0694
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: bad 4
+ok 4 - kill-by-pid-only: bad 4
+  ---
+  duration_ms: 0.0805
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: bad 5
+ok 5 - kill-by-pid-only: bad 5
+  ---
+  duration_ms: 0.1548
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: bad 6
+ok 6 - kill-by-pid-only: bad 6
+  ---
+  duration_ms: 0.1682
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: clean 1
+ok 7 - kill-by-pid-only: clean 1
+  ---
+  duration_ms: 0.2166
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: clean 2
+ok 8 - kill-by-pid-only: clean 2
+  ---
+  duration_ms: 0.0611
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: clean 3
+ok 9 - kill-by-pid-only: clean 3
+  ---
+  duration_ms: 0.2286
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: clean 4
+ok 10 - kill-by-pid-only: clean 4
+  ---
+  duration_ms: 0.3576
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: clean 5
+ok 11 - kill-by-pid-only: clean 5
+  ---
+  duration_ms: 0.1047
+  type: 'test'
+  ...
+# Subtest: kill-by-pid-only: defensive contexts and forced exception
+ok 12 - kill-by-pid-only: defensive contexts and forced exception
+  ---
+  duration_ms: 0.2153
+  type: 'test'
+  ...
+# Subtest: commit-by-path: bad 1
+ok 13 - commit-by-path: bad 1
+  ---
+  duration_ms: 0.124
+  type: 'test'
+  ...
+# Subtest: commit-by-path: bad 2
+ok 14 - commit-by-path: bad 2
+  ---
+  duration_ms: 0.0407
+  type: 'test'
+  ...
+# Subtest: commit-by-path: bad 3
+ok 15 - commit-by-path: bad 3
+  ---
+  duration_ms: 0.1062
+  type: 'test'
+  ...
+# Subtest: commit-by-path: bad 4
+ok 16 - commit-by-path: bad 4
+  ---
+  duration_ms: 0.0935
+  type: 'test'
+  ...
+# Subtest: commit-by-path: bad 5
+ok 17 - commit-by-path: bad 5
+  ---
+  duration_ms: 0.0493
+  type: 'test'
+  ...
+# Subtest: commit-by-path: bad 6
+ok 18 - commit-by-path: bad 6
+  ---
+  duration_ms: 0.1052
+  type: 'test'
+  ...
+# Subtest: commit-by-path: clean 1
+ok 19 - commit-by-path: clean 1
+  ---
+  duration_ms: 0.064
+  type: 'test'
+  ...
+# Subtest: commit-by-path: clean 2
+ok 20 - commit-by-path: clean 2
+  ---
+  duration_ms: 0.0338
+  type: 'test'
+  ...
+# Subtest: commit-by-path: clean 3
+ok 21 - commit-by-path: clean 3
+  ---
+  duration_ms: 0.0736
+  type: 'test'
+  ...
+# Subtest: commit-by-path: clean 4
+ok 22 - commit-by-path: clean 4
+  ---
+  duration_ms: 0.0518
+  type: 'test'
+  ...
+# Subtest: commit-by-path: clean 5
+ok 23 - commit-by-path: clean 5
+  ---
+  duration_ms: 0.0665
+  type: 'test'
+  ...
+# Subtest: commit-by-path: clean 6
+ok 24 - commit-by-path: clean 6
+  ---
+  duration_ms: 0.0401
+  type: 'test'
+  ...
+# Subtest: commit-by-path: defensive contexts and forced exception
+ok 25 - commit-by-path: defensive contexts and forced exception
+  ---
+  duration_ms: 0.0723
+  type: 'test'
+  ...
+# Subtest: no-rollback-on-shared-tree: bad 1
+ok 26 - no-rollback-on-shared-tree: bad 1
+  ---
+  duration_ms: 0.1207
+  type: 'test'
+  ...
+# Subtest: no-rollback-on-shared-tree: bad 2
+ok 27 - no-rollback-on-shared-tree: bad 2
+  ---
+  duration_ms: 0.0693
+  type: 'test'
+  ...
+# Subtest: no-rollback-on-shared-tree: bad 3
+ok 28 - no-rollback-on-shared-tree: bad 3
+  ---
+  duration_ms: 0.0332
+  type: 'test'
+  ...
+# Subtest: no-rollback-on-shared-tree: bad 4
+ok 29 - no-rollback-on-shared-tree: bad 4
+  ---
+  duration_ms: 0.0282
+  type: 'test'
+  ...
+# Subtest: no-rollback-on-shared-tree: bad 5
+ok 30 - no-rollback-on-shared-tree: bad 5
+  ---
+  duration_ms: 0.0947
+  type: 'test'
+  ...
+# Subtest: no-rollback-on-shared-tree: clean 1
+ok 31 - no-rollback-on-shared-tree: clean 1
+  ---
+  duration_ms: 0.0408
+  type: 'test'
+  ...
+# Subtest: no-rollback-on-shared-tree: clean 2
+ok 32 - no-rollback-on-shared-tree: clean 2
+  ---
+  duration_ms: 0.0313
+  type: 'test'
+  ...
+# Subtest: no-rollback-on-shared-tree: clean 3
+ok 33 - no-rollback-on-shared-tree: clean 3
+  ---
+  duration_ms: 0.0295
+  type: 'test'
+  ...
+# Subtest: no-rollback-on-shared-tree: clean 4
+ok 34 - no-rollback-on-shared-tree: clean 4
+  ---
+  duration_ms: 0.0319
+  type: 'test'
+  ...
+# Subtest: no-rollback-on-shared-tree: defensive contexts and forced exception
+ok 35 - no-rollback-on-shared-tree: defensive contexts and forced exception
+  ---
+  duration_ms: 0.0854
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: bad 1
+ok 36 - keep-the-exit-code: bad 1
+  ---
+  duration_ms: 0.2918
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: bad 2
+ok 37 - keep-the-exit-code: bad 2
+  ---
+  duration_ms: 0.1527
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: bad 3
+ok 38 - keep-the-exit-code: bad 3
+  ---
+  duration_ms: 0.0547
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: bad 4
+ok 39 - keep-the-exit-code: bad 4
+  ---
+  duration_ms: 0.0589
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: bad 5
+ok 40 - keep-the-exit-code: bad 5
+  ---
+  duration_ms: 0.0345
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: clean 1
+ok 41 - keep-the-exit-code: clean 1
+  ---
+  duration_ms: 0.0402
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: clean 2
+ok 42 - keep-the-exit-code: clean 2
+  ---
+  duration_ms: 0.0328
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: clean 3
+ok 43 - keep-the-exit-code: clean 3
+  ---
+  duration_ms: 0.0434
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: clean 4
+ok 44 - keep-the-exit-code: clean 4
+  ---
+  duration_ms: 0.0326
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: clean 5
+ok 45 - keep-the-exit-code: clean 5
+  ---
+  duration_ms: 0.0352
+  type: 'test'
+  ...
+# Subtest: keep-the-exit-code: defensive contexts and forced exception
+ok 46 - keep-the-exit-code: defensive contexts and forced exception
+  ---
+  duration_ms: 0.0623
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: bad 1
+ok 47 - no-secret-in-files: bad 1
+  ---
+  duration_ms: 0.2525
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: bad 2
+ok 48 - no-secret-in-files: bad 2
+  ---
+  duration_ms: 0.2303
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: bad 3
+ok 49 - no-secret-in-files: bad 3
+  ---
+  duration_ms: 0.257
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: bad 4
+ok 50 - no-secret-in-files: bad 4
+  ---
+  duration_ms: 0.0929
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: bad 5
+ok 51 - no-secret-in-files: bad 5
+  ---
+  duration_ms: 0.0698
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: bad 6
+ok 52 - no-secret-in-files: bad 6
+  ---
+  duration_ms: 0.0326
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: bad 7
+ok 53 - no-secret-in-files: bad 7
+  ---
+  duration_ms: 0.0427
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: clean 1
+ok 54 - no-secret-in-files: clean 1
+  ---
+  duration_ms: 0.0248
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: clean 2
+ok 55 - no-secret-in-files: clean 2
+  ---
+  duration_ms: 0.0396
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: clean 3
+ok 56 - no-secret-in-files: clean 3
+  ---
+  duration_ms: 0.0674
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: clean 4
+ok 57 - no-secret-in-files: clean 4
+  ---
+  duration_ms: 0.0409
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: clean 5
+ok 58 - no-secret-in-files: clean 5
+  ---
+  duration_ms: 0.0496
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: clean 6
+ok 59 - no-secret-in-files: clean 6
+  ---
+  duration_ms: 0.037
+  type: 'test'
+  ...
+# Subtest: no-secret-in-files: defensive contexts and forced exception
+ok 60 - no-secret-in-files: defensive contexts and forced exception
+  ---
+  duration_ms: 0.046
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 1
+ok 61 - approval-before-it-leaves: bad 1
+  ---
+  duration_ms: 0.322
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 2
+ok 62 - approval-before-it-leaves: bad 2
+  ---
+  duration_ms: 0.1351
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 3
+ok 63 - approval-before-it-leaves: bad 3
+  ---
+  duration_ms: 0.0363
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 4
+ok 64 - approval-before-it-leaves: bad 4
+  ---
+  duration_ms: 0.0292
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 5
+ok 65 - approval-before-it-leaves: bad 5
+  ---
+  duration_ms: 0.0268
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 6
+ok 66 - approval-before-it-leaves: bad 6
+  ---
+  duration_ms: 0.0277
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 7
+ok 67 - approval-before-it-leaves: bad 7
+  ---
+  duration_ms: 0.2578
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 8
+ok 68 - approval-before-it-leaves: bad 8
+  ---
+  duration_ms: 0.1458
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 9
+ok 69 - approval-before-it-leaves: bad 9
+  ---
+  duration_ms: 0.0443
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 10
+ok 70 - approval-before-it-leaves: bad 10
+  ---
+  duration_ms: 0.901
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: bad 11
+ok 71 - approval-before-it-leaves: bad 11
+  ---
+  duration_ms: 0.0728
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: clean 1
+ok 72 - approval-before-it-leaves: clean 1
+  ---
+  duration_ms: 0.0537
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: clean 2
+ok 73 - approval-before-it-leaves: clean 2
+  ---
+  duration_ms: 0.0297
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: clean 3
+ok 74 - approval-before-it-leaves: clean 3
+  ---
+  duration_ms: 0.0245
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: clean 4
+ok 75 - approval-before-it-leaves: clean 4
+  ---
+  duration_ms: 0.0361
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: clean 5
+ok 76 - approval-before-it-leaves: clean 5
+  ---
+  duration_ms: 0.0243
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: clean 6
+ok 77 - approval-before-it-leaves: clean 6
+  ---
+  duration_ms: 0.4852
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: clean 7
+ok 78 - approval-before-it-leaves: clean 7
+  ---
+  duration_ms: 0.4436
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: clean 8
+ok 79 - approval-before-it-leaves: clean 8
+  ---
+  duration_ms: 0.04
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: clean 9
+ok 80 - approval-before-it-leaves: clean 9
+  ---
+  duration_ms: 0.0395
+  type: 'test'
+  ...
+# Subtest: approval-before-it-leaves: defensive contexts and forced exception
+ok 81 - approval-before-it-leaves: defensive contexts and forced exception
+  ---
+  duration_ms: 0.0493
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: bad 1
+ok 82 - close-needs-both-words: bad 1
+  ---
+  duration_ms: 0.7296
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: bad 2
+ok 83 - close-needs-both-words: bad 2
+  ---
+  duration_ms: 0.5607
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: bad 3
+ok 84 - close-needs-both-words: bad 3
+  ---
+  duration_ms: 0.0562
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: bad 4
+ok 85 - close-needs-both-words: bad 4
+  ---
+  duration_ms: 0.1054
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: bad 5
+ok 86 - close-needs-both-words: bad 5
+  ---
+  duration_ms: 0.534
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: clean 1
+ok 87 - close-needs-both-words: clean 1
+  ---
+  duration_ms: 0.0429
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: clean 2
+ok 88 - close-needs-both-words: clean 2
+  ---
+  duration_ms: 0.0309
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: clean 3
+ok 89 - close-needs-both-words: clean 3
+  ---
+  duration_ms: 0.548
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: clean 4
+ok 90 - close-needs-both-words: clean 4
+  ---
+  duration_ms: 0.4317
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: clean 5
+ok 91 - close-needs-both-words: clean 5
+  ---
+  duration_ms: 0.0407
+  type: 'test'
+  ...
+# Subtest: close-needs-both-words: defensive contexts and forced exception
+ok 92 - close-needs-both-words: defensive contexts and forced exception
+  ---
+  duration_ms: 0.0435
+  type: 'test'
+  ...
+# Subtest: no-backslash-heredoc: bad 1
+ok 93 - no-backslash-heredoc: bad 1
+  ---
+  duration_ms: 0.1811
+  type: 'test'
+  ...
+# Subtest: no-backslash-heredoc: bad 2
+ok 94 - no-backslash-heredoc: bad 2
+  ---
+  duration_ms: 0.091
+  type: 'test'
+  ...
+# Subtest: no-backslash-heredoc: bad 3
+ok 95 - no-backslash-heredoc: bad 3
+  ---
+  duration_ms: 0.0292
+  type: 'test'
+  ...
+# Subtest: no-backslash-heredoc: clean 1
+ok 96 - no-backslash-heredoc: clean 1
+  ---
+  duration_ms: 0.0206
+  type: 'test'
+  ...
+# Subtest: no-backslash-heredoc: clean 2
+ok 97 - no-backslash-heredoc: clean 2
+  ---
+  duration_ms: 0.0199
+  type: 'test'
+  ...
+# Subtest: no-backslash-heredoc: clean 3
+ok 98 - no-backslash-heredoc: clean 3
+  ---
+  duration_ms: 0.0189
+  type: 'test'
+  ...
+# Subtest: no-backslash-heredoc: defensive contexts and forced exception
+ok 99 - no-backslash-heredoc: defensive contexts and forced exception
+  ---
+  duration_ms: 0.0476
+  type: 'test'
+  ...
+# Subtest: never-let-it-sleep: bad 1
+ok 100 - never-let-it-sleep: bad 1
+  ---
+  duration_ms: 0.147
+  type: 'test'
+  ...
+# Subtest: never-let-it-sleep: bad 2
+ok 101 - never-let-it-sleep: bad 2
+  ---
+  duration_ms: 0.0672
+  type: 'test'
+  ...
+# Subtest: never-let-it-sleep: bad 3
+ok 102 - never-let-it-sleep: bad 3
+  ---
+  duration_ms: 0.1207
+  type: 'test'
+  ...
+# Subtest: never-let-it-sleep: bad 4
+ok 103 - never-let-it-sleep: bad 4
+  ---
+  duration_ms: 0.0491
+  type: 'test'
+  ...
+# Subtest: never-let-it-sleep: bad 5
+ok 104 - never-let-it-sleep: bad 5
+  ---
+  duration_ms: 0.1297
+  type: 'test'
+  ...
+# Subtest: never-let-it-sleep: clean 1
+ok 105 - never-let-it-sleep: clean 1
+  ---
+  duration_ms: 0.0688
+  type: 'test'
+  ...
+# Subtest: never-let-it-sleep: clean 2
+ok 106 - never-let-it-sleep: clean 2
+  ---
+  duration_ms: 0.0326
+  type: 'test'
+  ...
+# Subtest: never-let-it-sleep: clean 3
+ok 107 - never-let-it-sleep: clean 3
+  ---
+  duration_ms: 0.0227
+  type: 'test'
+  ...
+# Subtest: never-let-it-sleep: clean 4
+ok 108 - never-let-it-sleep: clean 4
+  ---
+  duration_ms: 0.1271
+  type: 'test'
+  ...
+# Subtest: never-let-it-sleep: defensive contexts and forced exception
+ok 109 - never-let-it-sleep: defensive contexts and forced exception
+  ---
+  duration_ms: 0.0584
+  type: 'test'
+  ...
+# Subtest: no-blind-force: bad 1
+ok 110 - no-blind-force: bad 1
+  ---
+  duration_ms: 0.2878
+  type: 'test'
+  ...
+# Subtest: no-blind-force: bad 2
+ok 111 - no-blind-force: bad 2
+  ---
+  duration_ms: 0.12
+  type: 'test'
+  ...
+# Subtest: no-blind-force: bad 3
+ok 112 - no-blind-force: bad 3
+  ---
+  duration_ms: 0.0377
+  type: 'test'
+  ...
+# Subtest: no-blind-force: bad 4
+ok 113 - no-blind-force: bad 4
+  ---
+  duration_ms: 0.0385
+  type: 'test'
+  ...
+# Subtest: no-blind-force: bad 5
+ok 114 - no-blind-force: bad 5
+  ---
+  duration_ms: 0.0354
+  type: 'test'
+  ...
+# Subtest: no-blind-force: bad 6
+ok 115 - no-blind-force: bad 6
+  ---
+  duration_ms: 0.0291
+  type: 'test'
+  ...
+# Subtest: no-blind-force: bad 7
+ok 116 - no-blind-force: bad 7
+  ---
+  duration_ms: 0.0537
+  type: 'test'
+  ...
+# Subtest: no-blind-force: bad 8
+ok 117 - no-blind-force: bad 8
+  ---
+  duration_ms: 0.176
+  type: 'test'
+  ...
+# Subtest: no-blind-force: bad 9
+ok 118 - no-blind-force: bad 9
+  ---
+  duration_ms: 0.0524
+  type: 'test'
+  ...
+# Subtest: no-blind-force: clean 1
+ok 119 - no-blind-force: clean 1
+  ---
+  duration_ms: 0.0658
+  type: 'test'
+  ...
+# Subtest: no-blind-force: clean 2
+ok 120 - no-blind-force: clean 2
+  ---
+  duration_ms: 0.0363
+  type: 'test'
+  ...
+# Subtest: no-blind-force: clean 3
+ok 121 - no-blind-force: clean 3
+  ---
+  duration_ms: 0.0236
+  type: 'test'
+  ...
+# Subtest: no-blind-force: clean 4
+ok 122 - no-blind-force: clean 4
+  ---
+  duration_ms: 0.6532
+  type: 'test'
+  ...
+# Subtest: no-blind-force: defensive contexts and forced exception
+ok 123 - no-blind-force: defensive contexts and forced exception
+  ---
+  duration_ms: 0.0676
+  type: 'test'
+  ...
+# Subtest: coverage contract: ten unique policies, each has both harnesses and >=2 bad / >=2 clean controls
+ok 124 - coverage contract: ten unique policies, each has both harnesses and >=2 bad / >=2 clean controls
+  ---
+  duration_ms: 0.825
+  type: 'test'
+  ...
+# Subtest: mutation proof: replacing a detector with allow fails the same decision assertion
+ok 125 - mutation proof: replacing a detector with allow fails the same decision assertion
+  ---
+  duration_ms: 0.8482
+  type: 'test'
+  ...
+# Subtest: transcripts: latest human wins, assistant/tool/developer text cannot approve
+ok 126 - transcripts: latest human wins, assistant/tool/developer text cannot approve
+  ---
+  duration_ms: 6.7431
+  type: 'test'
+  ...
+# Subtest: secret families, Windows paths, mixed patch targets, and removed secrets
+ok 127 - secret families, Windows paths, mixed patch targets, and removed secrets
+  ---
+  duration_ms: 0.2239
+  type: 'test'
+  ...
+# Subtest: all raw shell aliases, argv commands, and canonical Codex Edit
+ok 128 - all raw shell aliases, argv commands, and canonical Codex Edit
+  ---
+  duration_ms: 0.3258
+  type: 'test'
+  ...
+# Subtest: Jev evals: six valid noul specifications
+ok 129 - Jev evals: six valid noul specifications
+  ---
+  duration_ms: 0.6198
+  type: 'test'
+  ...
+# Subtest: real installed failproofai: ESM loader shim, registrations, and full case matrix
+ok 130 - real installed failproofai: ESM loader shim, registrations, and full case matrix
+  ---
+  duration_ms: 11.8176
+  type: 'test'
+  ...
+1..130
+# tests 130
+# suites 0
+# pass 130
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 125.1379

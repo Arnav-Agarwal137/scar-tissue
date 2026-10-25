@@ -11,7 +11,7 @@ failproofai policies add Arnav-Agarwal137/scar-tissue      # published release v
 failproofai policies -i -c ./scar-tissue.mjs --cli codex --scope project   # or from a clone, one project only
 ```
 
-Found while building: on Windows, when the repo lives on a `subst` drive, `failproofai publish` reports committed policy files as "not in it" (the drive letter and git's real path differ). Workaround: pass `--version`.
+Found while building: on Windows, when the repo lives on a `subst` drive, `failproofai publish` reports committed policy files as "not in it" (the drive letter and git's real path differ). Root cause: `realOrSelf()` in `src/hooks/pack-cli.ts` uses the JavaScript `realpathSync`, which keeps `R:\...`, while `git rev-parse --show-toplevel` answers `C:/...`. Fix: try `realpathSync.native` first, which resolves the substitution. Verified by patching the installed 1.0.12 bundle: the false "never committed" refusal disappears and publish proceeds to its next (correct) check. Workaround until it ships: pass `--version`.
 
 ## Proven through the real engine
 

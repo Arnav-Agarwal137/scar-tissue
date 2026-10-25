@@ -252,3 +252,21 @@ register("no-blind-force", "Shell", "A broad force-delete threatened files outsi
     return e === "remove-item" && a.some(x => /^-recurse$/i.test(x)) && a.some(x => /^-force$/i.test(x)) && a.some(dangerousTarget);
   })) return deny("A broad force-delete can destroy shared files. Instead: list the specific path you created, verify it, then delete only that path.");
 });
+register("no-catastrophic-commands", "Shell", "Commands that wipe a disk, a database or the whole machine in one line.", (ctx, cmd) => {
+  const ws = segments(cmd);
+  const wipe = ws.some(w => {
+    const e = exe(w), a = w.slice(1), s = a.join(" ");
+    if (e === "rm" && /(?:^|\s)-[a-z]*r/i.test(s) && a.some(x => /^(?:\/\*|~\/\*|[a-z]:[\/]\*|\/[a-z]*\/?\*?)$/i.test(norm(x)) && /^(?:\/\*|~\/\*|[a-z]:\/\*|\/(?:bin|boot|etc|lib|usr|var)?\/?\*?)$/i.test(norm(x)))) return true;
+    if ((e === "del" || e === "erase" || e === "rd" || e === "rmdir") && a.some(x => /^\/s$/i.test(x)) && a.some(x => /^[a-z]:[\/]?\*?$/i.test(norm(x)))) return true;
+    if (e === "format" && a.some(x => /^[a-z]:$/i.test(x))) return true;
+    if (e === "dd" && a.some(x => /^of=\/dev\/(?:sd|nvme|hd|disk|mmcblk)/i.test(x))) return true;
+    if (/^mkfs/i.test(e) || e === "diskpart") return true;
+    if (e === "chmod" && /-R/.test(s) && a.includes("/")) return true;
+    if (e === "sudo" && a.length) return true;
+    if (/\b(?:drop\s+(?:table|database|schema)|truncate\s+table)\b/i.test(s) && /^(?:psql|mysql|sqlite3|sqlcmd|mongo|mongosh)$/.test(e)) return true;
+    return false;
+  });
+  const pipeToShell = ws.some(w => /^(?:curl|wget|iwr|irm|invoke-webrequest|invoke-restmethod)$/.test(exe(w))) &&
+    /\|\s*(?:sudo\s+)?(?:sh|bash|zsh|iex|invoke-expression|powershell|pwsh)\b/i.test(cmd);
+  if (wipe || pipeToShell) return deny("This one line can wipe a disk, a database or the machine, or runs unseen code from the internet. Instead: stop, show the exact command to the person and let them run it themselves if they really mean it.");
+});

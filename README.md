@@ -1,6 +1,6 @@
 # scar-tissue
 
-**Every policy here is a scar.** Fourteen guards turn agent incidents into tool-call checks that tell the agent what to do instead.
+**Every policy here is a scar.** Fifteen guards turn agent incidents into tool-call checks that tell the agent what to do instead.
 
 Built for the Failproof AI × Quad AI hackathon. The incidents came from two months of a coding agent operating one person's laptop. The recurring lesson: a bare “blocked” can make an agent give up or claim success. A useful guard supplies a recovery path.
 
@@ -58,11 +58,11 @@ The same scars, for agents that drive a real browser.
 
 ## Why this is failproof
 
-- **174 passing tests, zero failures or skips** in `test.log`, including an integration test against installed failproofai 1.0.12. Run `node --test test/` with Node 22.18+.
+- **189 passing tests, zero failures or skips** in `test.log`, including an integration test against installed failproofai 1.0.12. Run `node --test test/` with Node 22.18+.
 - Every policy has at least two dangerous inputs and two clean controls, including Claude Code and Codex shapes. Tests assert the exact `deny`, `instruct`, or `allow` decision and actionable “Instead:” guidance.
 - Clean controls check PID kills, path-specific staging, stashing, ordinary writes, dry runs, localhost requests, and quoted command examples. These guard against over-blocking.
 - Every registered function has a `try/catch`. Because the host treats exceptions as allow, tests force an exception and exercise missing/malformed contexts for every policy. A missing or unreadable transcript supplies no approval.
-- A coverage contract checks all fourteen policy names and both tool families: Claude Code/Codex for coding guards, Claude in Chrome/Playwright MCP for browser guards. A mutation test replaces a detector with `allow` and confirms the same decision assertion fails.
+- A coverage contract checks all fifteen policy names and both tool families: Claude Code/Codex for coding guards, Claude in Chrome/Playwright MCP for browser guards. A mutation test replaces a detector with `allow` and confirms the same decision assertion fails.
 - Works with Claude `Bash`/`Write`/`Edit`, canonical Codex hooks, and raw `shell`, `shell_command`, `exec_command`, `PowerShell`, and `apply_patch` shapes. Shell commands may be strings or argv arrays; Windows paths are normalized.
 
 Browser coverage includes Claude in Chrome `computer` (left_click/type/key), `form_input`, `navigate`, and `javascript_tool`, plus Playwright MCP `browser_click`, `browser_type`, `browser_navigate`, and `browser_evaluate`. Clean controls include Compose clicks, normal sentences, Google searches, and a non-Luhn 16-digit order ID.
